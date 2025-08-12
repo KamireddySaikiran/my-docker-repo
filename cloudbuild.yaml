@@ -1,9 +1,16 @@
-steps:
+  steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/my-app:latest', '.']
-
+    args: [
+      'build',
+      '-t', 'us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/my-image:latest',
+      '.'
+    ]
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/my-app:latest']
+    args: [
+      'push',
+      'us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/my-image:latest'
+    ]
 
 images:
-  - 'us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/my-app:latest'
+  - 'us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/my-image:latest'
+
