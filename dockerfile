@@ -1,14 +1,8 @@
-# Use official lightweight Python image
-FROM python:3.11-slim
+FROM nginx:latest
+COPY ./index.html /usr/share/nginx/html/index.html
 
-# Set working directory inside the container
-WORKDIR /app
+# Replace default nginx config to listen on Cloud Run's port
+RUN sed -i "s/listen 80;/listen ${PORT};/" /etc/nginx/conf.d/default.conf
 
-# Copy all files from the repo into the container
-COPY . .
+EXPOSE 8080
 
-# Install dependencies if requirements.txt exists
-RUN pip install --no-cache-dir -r requirements.txt || true
-
-# Set default command
-CMD ["python3", "app.py"]
