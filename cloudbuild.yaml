@@ -23,7 +23,8 @@ images:
   - "us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/sample-app:latest"
 
 # Fix for "must specify logs" error
-logsBucket: gs://my-logs-cb
+gcloud builds submit --config=cloudbuild.yaml --logging=CLOUD_LOGGING_ONLY
+
 
 
 
