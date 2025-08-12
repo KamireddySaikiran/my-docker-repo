@@ -22,7 +22,7 @@ steps:
 images:
   - "us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/sample-app:latest"
 
-  options:
+options:
   - logging: CLOUD_LOGGING_ONLY
 
 
