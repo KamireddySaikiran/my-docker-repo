@@ -1,19 +1,29 @@
-  steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [
-      'build',
-      '-t', 'us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/my-image:latest',
-      '.'
-    ]
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [
-      'push',
-      'us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/my-image:latest'
-    ]
+serviceAccount: projects/intense-acumen-468006-i0/serviceAccounts:build-and-push@intense-acumen-468006-i0.iam.gserviceaccount.com
+
+steps:
+  # Step 1: Build Docker image
+  - name: gcr.io/cloud-builders/docker
+    args:
+      [
+        "build",
+        "-t",
+        "us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/sample-app:latest",
+        "."
+      ]
+
+  # Step 2: Push Docker image to Artifact Registry
+  - name: gcr.io/cloud-builders/docker
+    args:
+      [
+        "push",
+        "us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/sample-app:latest"
+      ]
 
 images:
-  - 'us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/my-image:latest'
+  - "us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/sample-app:latest"
 
-  logging: CLOUD_LOGGING_ONLY
+# Fix for "must specify logs" error
+logging: CLOUD_LOGGING_ONLY
+
 
 
