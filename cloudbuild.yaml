@@ -1,4 +1,4 @@
-serviceAccount: projects/intense-acumen-468006-i0/serviceAccounts:build-and-push@intense-acumen-468006-i0.iam.gserviceaccount.com
+serviceAccount: projects/intense-acumen-468006-i0/serviceAccounts/build-and-push@intense-acumen-468006-i0.iam.gserviceaccount.com
 
 steps:
   # Step 1: Build Docker image
@@ -11,7 +11,7 @@ steps:
         "."
       ]
 
-  # Step 2: Push Docker image to Artifact Registrys
+  # Step 2: Push Docker image to Artifact Registry
   - name: gcr.io/cloud-builders/docker
     args:
       [
@@ -23,10 +23,4 @@ images:
   - "us-central1-docker.pkg.dev/intense-acumen-468006-i0/my-docker-repo/sample-app:latest"
 
 options:
-  - logging: CLOUD_LOGGING_ONLY
-
-
-
-
-
-
+  logging: CLOUD_LOGGING_ONLY
