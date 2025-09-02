@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://gitlab.com/mypublic4341336/my-docker-repo'
+                git branch: 'main', url: 'https://github.com/KamireddySaikiran/my-docker-repo'
             }
         }
         stage('Build Docker Image') {
