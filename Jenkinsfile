@@ -1,26 +1,29 @@
+
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                    url: 'https://gitlab.com/mypublic4341336/my-docker-repo'
+                git branch: 'main', url: 'https://gitlab.com/mypublic4341336/my-docker-repo'
             }
         }
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                echo 'Building....'
+                script {
+                    docker.build('hello-world-image')
+                }
             }
         }
-        stage('Test') {
+        stage('Run Docker Image') {
             steps {
-                echo 'Testing...'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
+                script {
+                    docker.image('hello-world-image').inside {
+                        sh 'echo Hello World from Docker!'
+                    }
+                }
             }
         }
     }
 }
+
